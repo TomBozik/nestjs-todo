@@ -16,7 +16,7 @@ model User {
   email String @unique
   password String
 
-  lists UsersInList[]
+  lists List[]
   items Item[]
 
   @@map("users")
@@ -27,7 +27,7 @@ model List {
   id Int @id @default(autoincrement())
   name String
 
-  users UsersInList[]
+  users User[]
   items Item[]
 
   @@map("lists")
@@ -51,16 +51,6 @@ model Item {
   @@map("items")
 }
 
-
-model UsersInList {
-  user User @relation(fields: [userId], references: [id])
-  userId Int
-  list List @relation(fields: [listId], references: [id])
-  listId Int
-
-  @@id([userId, listId])
-
-}
 
 
 // enum State {
