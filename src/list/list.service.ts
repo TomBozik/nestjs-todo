@@ -20,6 +20,25 @@ export class ListService {
           connect: { id: userId },
         },
       },
+      // TODO: Toto iste sa vela krat opakuje
+      include: {
+        users: {
+          select: {
+            id: true,
+            email: true,
+          },
+        },
+        items: {
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            deadline: true,
+            state: true,
+            userId: true,
+          },
+        },
+      },
     });
     return list;
   }
@@ -33,7 +52,16 @@ export class ListService {
             email: true,
           },
         },
-        items: true,
+        items: {
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            deadline: true,
+            state: true,
+            userId: true,
+          },
+        },
       },
     });
   }
@@ -42,6 +70,24 @@ export class ListService {
     const list = await this.prisma.list.findFirst({
       where: {
         id,
+      },
+      include: {
+        users: {
+          select: {
+            id: true,
+            email: true,
+          },
+        },
+        items: {
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            deadline: true,
+            state: true,
+            userId: true,
+          },
+        },
       },
     });
 
@@ -88,6 +134,24 @@ export class ListService {
       data: {
         users: {
           connect: [{ id: dto.userId }],
+        },
+      },
+      include: {
+        users: {
+          select: {
+            id: true,
+            email: true,
+          },
+        },
+        items: {
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            deadline: true,
+            state: true,
+            userId: true,
+          },
         },
       },
     });

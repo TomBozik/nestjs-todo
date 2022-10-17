@@ -18,7 +18,7 @@ export class ListController {
   constructor(private listService: ListService) {}
 
   @UseGuards(JwtGuard)
-  @Post('create')
+  @Post()
   createList(@GetUser('userId') userId: number, @Body() dto: createListDto) {
     return this.listService.createList(userId, dto);
   }

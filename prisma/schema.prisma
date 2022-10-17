@@ -50,11 +50,3 @@ model Item {
 
   @@map("items")
 }
-
-
-
-// enum State {
-//   TODO
-//   DONE
-//   DELETED
-// }
